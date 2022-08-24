@@ -53,6 +53,9 @@ document.querySelector('#file').addEventListener('change', function(){
 	let file = this.files[0];
 	console.log( file.name, file.type, file.size, file.lastModified );
 
+	//	Specifies size of content to load.
+	let temp = file.slice(0, file.size, file.type);
+
 	//	...
 	let file_reader = new FileReader();
 	file_reader.onloadend = function(e){
@@ -61,7 +64,7 @@ document.querySelector('#file').addEventListener('change', function(){
 		}
 		got_content(file_reader.result);
 	};
-	file_reader.readAsText(file);
+	file_reader.readAsText(temp);
 });
 
 //	...
